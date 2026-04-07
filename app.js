@@ -3,8 +3,8 @@ const app = express();
 
 app.use(express.json());
 
-const userRoutes = require('./routes/users');
-app.use('/users', userRoutes);
+const userRoutes = require('./routes/corredores');
+app.use('/corredores', userRoutes);
 
 
 module.exports = app;
