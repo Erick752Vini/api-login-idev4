@@ -37,7 +37,7 @@ routes.post('/login', async (req, res) => {
           const senhaValida = await bcrypt.compare(senha, user.senha);
           
           if (senhaValida) {
-          const token = JsonWebTokenError.sign({id:user.id, email:user.email},
+            const token = jwt.sign({id: user.id, email: user.email},
             process.env.JWT_SECRET, {expiresIn: '8h'});
 
             delete user.senha;
