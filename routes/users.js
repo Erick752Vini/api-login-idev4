@@ -2,6 +2,8 @@ const express = require('express');
 const routes = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.JWT_SECRET || 'sua_chave_secreta';
 
 //CRUD - Create, Read, Update, Delete
 //Get all em usuarios
