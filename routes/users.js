@@ -37,13 +37,19 @@ routes.post('/login', async (req, res) => {
           const senhaValida = await bcrypt.compare(senha, user.senha);
           
           if (senhaValida) {
-            const token = jwt.sign({id: user.id, email: user.email},
-            process.env.JWT_SECRET, {expiresIn: '8h'});
+            db.query('UPDATE usuarios SET ultimo_login = NOW(), total_logins = total_logins + 1 WHERE id = ?', [user.id]);
+
+            const token = jwt.sign(
+              { id: user.id, email: user.email },
+              process.env.JWT_SECRET,
+              { expiresIn: '8h' }
+            );
 
             delete user.senha;
-            res.status(200).json({ 
+            res.status(200).json({
               message: 'Login realizado com sucesso',
-              user: user
+              token,
+              user
             });
           } else {
             res.status(401).json({ error: 'Credenciais inválidas' });
