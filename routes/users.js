@@ -3,9 +3,7 @@ const routes = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET = process.env.JWT_SECRET || 'sua_chave_secreta';
 
-//CRUD - Create, Read, Update, Delete
 //Get all em usuarios
 routes.get('/', (req, res) => {
   db.query('SELECT * FROM usuarios', (err, results) => {
@@ -39,7 +37,9 @@ routes.post('/login', async (req, res) => {
           const senhaValida = await bcrypt.compare(senha, user.senha);
           
           if (senhaValida) {
-            // Remove a senha da resposta por segurança
+          const token = JsonWebTokenError.sign({id:user.id, email:user.email},
+            process.env.JWT_SECRET, {expiresIn: '8h'});
+
             delete user.senha;
             res.status(200).json({ 
               message: 'Login realizado com sucesso',
