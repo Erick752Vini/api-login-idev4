@@ -23,7 +23,7 @@
                 <li><a href="index.html#equipe">👤 Equipe</a></li>
                 <li><a href="index.html#carro">🚗 O Carro</a></li>
                 <li><a href="index.html#fanzone">🏁 Fanzone</a></li>
-                <li><a href="login.html">🔒 Sair</a></li>
+                <li><a href="#" onclick="logout()">🔒 Sair</a></li>
             </ul>
         </nav>
 
@@ -154,5 +154,12 @@
 
     <script src="api-mock.js"></script>
     <script src="dashboard.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>
