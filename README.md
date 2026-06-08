@@ -26,7 +26,6 @@ Participação de cada integrante:
 **Padrão Arquitetural**: O sistema adota o padrão **MVC (Model-View-Controller)**, separando a lógica de apresentação, controle e acesso a dados.
 
 **Estrutura de Pastas**:
-Insira-o-Nome-do-Projeto
 ├── frontend
 │   ├── index.html
 │   ├── login.html
